@@ -19,9 +19,20 @@ public class NinjaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+
+    @Column (name = "id")
+    private long id;
+
+    @Column (name = "nome")
     private String nome;
+
+    @Column(unique = true)
     private String email;
+
+    @Column (name = "img_url")
+    private String imgUrl;
+
+    @Column (name = "idade")
     private int idade;
 
     //muitos ninjas so podem fazer uma missao
