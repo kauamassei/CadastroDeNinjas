@@ -40,5 +40,4 @@ public class NinjaModel {
     @JoinColumn(name = "missoes_id") //foreing key
     private MissoesModel missoes;
 
-
 }
