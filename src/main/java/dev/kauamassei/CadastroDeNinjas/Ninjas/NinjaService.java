@@ -10,9 +10,11 @@ public class NinjaService {
 
     // injecao de dependencias
     private NinjaRepository ninjaRepository;
+    private NinjaMapper ninjaMapper;
 
-    public NinjaService(NinjaRepository ninjaRepository) {
+    public NinjaService(NinjaRepository ninjaRepository, NinjaMapper ninjaMapper) {
         this.ninjaRepository = ninjaRepository;
+        this.ninjaMapper = ninjaMapper;
     }
 
     // lista os ninjas
@@ -27,8 +29,10 @@ public class NinjaService {
     }
 
     // Cria ninja
-    public NinjaModel criarNinja(NinjaModel ninja) {
-        return ninjaRepository.save(ninja);
+    public NinjaDTO criarNinja(NinjaDTO ninjaDTO) {
+        NinjaModel ninja = ninjaMapper.map(ninjaDTO);
+        ninja = ninjaRepository.save(ninja);
+        return ninjaMapper.map(ninja);
     }
 
     // Deleta ninja
