@@ -14,9 +14,10 @@ public class NinjaController {
         this.ninjaService = ninjaService;
     }
 
-    @GetMapping("/boasvindas")
-    public String boasVindas() {
-        return "Essa é minha primeira mensagem nessa rota";
+    // Mostrar todos os ninjas
+    @GetMapping("/listar")
+    public List<NinjaDTO> listarNinjas() {
+        return ninjaService.listarNinjas();
     }
 
     // Adicionar ninja
@@ -25,20 +26,14 @@ public class NinjaController {
         return ninjaService.criarNinja(ninja);
     }
 
-    // Mostrar todos os ninjas
-    @GetMapping("/listar")
-    public List<NinjaModel> listarNinjas() {
-        return ninjaService.listarNinjas();
-    }
-
     // Mostrar ninja por ID
     @GetMapping("/listar/{id}")
-    public NinjaModel listarNinjaPorId(@PathVariable Long id) {
+    public NinjaDTO listarNinjaPorId(@PathVariable Long id) {
        return ninjaService.listarNinjaPorId(id);
     }
     // Atualizar dados do ninja
     @PutMapping("/alterar/{id}")
-    public NinjaModel alterarNinjaPorId(@PathVariable Long id, @RequestBody NinjaModel ninjaAtualizado) {
+    public NinjaDTO alterarNinjaPorId(@PathVariable Long id, @RequestBody NinjaDTO ninjaAtualizado) {
         return ninjaService.atualizarNinja(id, ninjaAtualizado);
     }
 
@@ -48,5 +43,6 @@ public class NinjaController {
         ninjaService.deletarNinjaPorId(id);
         return "Ninja deletado";
     }
+
 
 }
